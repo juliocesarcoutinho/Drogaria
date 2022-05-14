@@ -19,7 +19,7 @@ public class GenericDAO<Entidade> {
 		this.classe = (Class<Entidade>) ((ParameterizedType) getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
 	}
-
+		//////////////////////////////////////////Salvar///////////////////////////////////////////////////////////////////////
 	public void salvar(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
@@ -37,6 +37,8 @@ public class GenericDAO<Entidade> {
 			sessao.close();
 		}
 	}
+	
+	/////////////////////////////////////////////////Listar////////////////////////////////////////////////////////////////////
 	@SuppressWarnings({ })
 	public List<Entidade> listar() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
