@@ -11,6 +11,7 @@ import br.com.julio.drogaria.domain.Estado;
 //----------------------------- Salvar -----------------------------------------//
 public class CidadeDAOTest {
 	@Test
+	@Ignore
 	public void salvar() {
 
 		EstadoDAO estadoDAO = new EstadoDAO();
@@ -79,7 +80,7 @@ public class CidadeDAOTest {
 		
 		cidadeDAO.excluir(cidade);
 		
-		System.out.println("Cidade Removida");
+		System.out.println("Cidade a Removida");
 		System.out.println("Código da Cidade: " + cidade.getCodigo());
 		System.out.println("Nome da Cidade: " + cidade.getNome());
 		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
@@ -88,14 +89,29 @@ public class CidadeDAOTest {
 		System.out.println();
 	}
 	@Test
-	@Ignore
 	public void editar (){
-		Long codigo = 9L;
+		Long codigoCidade = 14L;
+		Long codigoEstado = 11L;
+		
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = estadoDAO.buscar(codigoEstado);
+		
 
 		CidadeDAO cidadeDAO = new CidadeDAO();
-		Cidade cidade = cidadeDAO.buscar(codigo);
+		Cidade cidade = cidadeDAO.buscar(codigoCidade);
+		
+		cidade.setNome("Guarapuava");
+		cidade.setEstado(estado);
+		
+		cidadeDAO.editar(cidade);
 		
 		
-		
+		System.out.println("Cidade a ser Editada");
+		System.out.println("Código da Cidade: " + cidade.getCodigo());
+		System.out.println("Nome da Cidade: " + cidade.getNome());
+		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
+		System.out.println("Sigla do Estado: " + cidade.getEstado().getSigla());
+		System.out.println("Nome do Estado: " + cidade.getEstado().getNome());
+		System.out.println();
 	}
 }
