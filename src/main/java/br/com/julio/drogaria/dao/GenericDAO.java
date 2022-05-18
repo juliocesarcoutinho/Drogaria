@@ -5,12 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import java.io.UncheckedIOException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.julio.drogaria.util.HibernateUtil;
 
