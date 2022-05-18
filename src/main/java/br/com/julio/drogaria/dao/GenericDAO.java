@@ -43,29 +43,20 @@ public class GenericDAO<Entidade> {
 	}
 	
 	/////////////////////////////////////////////////Listar////////////////////////////////////////////////////////////////////
-	@SuppressWarnings({ })
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Entidade> listar() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try {
-			 // Create CriteriaBuilder
-	           CriteriaBuilder builder = sessao.getCriteriaBuilder();
-	           
-	           // Create CriteriaQuery
-	            CriteriaQuery<Entidade> consulta = builder.createQuery(classe);
-	    
-	           // Specify criteria root
-	           consulta.from(classe);
-	    
-	           // Execute query
-	           List<Entidade> resultado = sessao.createQuery(consulta).getResultList();
-	    
-	   return resultado;
+			Criteria consulta = sessao.createCriteria(classe);
+			List<Entidade> resultado = consulta.list();
+			return resultado;
 		} catch(RuntimeException erro) {
 			throw erro;
 		} finally {
 			sessao.close();
 		}
-	}	
+				
+	}
 /////////////////////////// Buscar //////////////////////////////////////////////////////////////	
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public Entidade buscar(Long codigo) {

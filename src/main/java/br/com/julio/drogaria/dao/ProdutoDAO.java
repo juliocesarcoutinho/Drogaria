@@ -1,5 +1,7 @@
 package br.com.julio.drogaria.dao;
 
-public class ProdutoDAO {
+import br.com.julio.drogaria.domain.Produto;
+
+public class ProdutoDAO extends GenericDAO<Produto>{
 
 }

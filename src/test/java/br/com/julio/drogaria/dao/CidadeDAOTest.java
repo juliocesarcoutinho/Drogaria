@@ -28,7 +28,6 @@ public class CidadeDAOTest {
 
 // ------------------------------ Listar --------------------------------------//
 	@Test
-	@Ignore
 	public void listar() {
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		List<Cidade> resultado = cidadeDAO.listar();
@@ -63,7 +62,7 @@ public class CidadeDAOTest {
 	}
 
 // -----------------------------Excluir -------------------------------------//
-	//@Test
+	@Test
 	@Ignore
 	public void excluir() {
 		Long codigo = 20L;
@@ -89,6 +88,7 @@ public class CidadeDAOTest {
 		System.out.println();
 	}
 	@Test
+	@Ignore
 	public void editar (){
 		Long codigoCidade = 14L;
 		Long codigoEstado = 11L;
