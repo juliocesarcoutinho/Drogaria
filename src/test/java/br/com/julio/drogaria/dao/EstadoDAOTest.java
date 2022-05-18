@@ -9,14 +9,16 @@ import br.com.julio.drogaria.domain.Estado;
 
 public class EstadoDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
 		Estado estado = new Estado();
-		estado.setNome("Rio de Janeiro");
-		estado.setSigla("RJ");
+		estado.setNome("Florianópolis");
+		estado.setSigla("SC");
+		
 
 		EstadoDAO estadoDAO = new EstadoDAO();
 		estadoDAO.salvar(estado);
+		
 	}
 
 	@Test
@@ -53,6 +55,7 @@ public class EstadoDAOTest {
 		System.out.println(estado.getCodigo());
 	}
 	@Test
+	@Ignore
 	public void editar() {
 		Long codigo = 4L;
 
