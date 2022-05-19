@@ -11,6 +11,7 @@ import br.com.julio.drogaria.domain.Estado;
 //----------------------------- Salvar -----------------------------------------//
 public class CidadeDAOTest {
 	@Test
+	@Ignore
 	public void salvar() {
 
 		EstadoDAO estadoDAO = new EstadoDAO();

@@ -71,7 +71,7 @@ public class FuncionarioDAOTest {
 	
 // ----------------------------------------- Excluir --------------------------------------------------------------------
 	@Test
-	
+	@Ignore
 	public void excluir() {
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 		Funcionario funcionario = funcionarioDAO.buscar(27L);

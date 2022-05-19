@@ -13,6 +13,7 @@ import br.com.julio.drogaria.domain.Produto;
 public class ProdutoDAOTest {
 //-------------------------------------	Salvar -----------------------------------------------------//
 	@Test
+	@Ignore
 	public void salvar() {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(11L);

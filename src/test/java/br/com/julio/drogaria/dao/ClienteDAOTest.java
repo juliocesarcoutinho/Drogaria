@@ -67,6 +67,7 @@ public class ClienteDAOTest {
 	}
 // ---------------------------------------------- Excluir -------------------------------------------
 	@Test
+	@Ignore
 	public void excluir() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente cliente = clienteDAO.buscar(25l);

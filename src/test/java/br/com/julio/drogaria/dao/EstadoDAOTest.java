@@ -9,7 +9,7 @@ import br.com.julio.drogaria.domain.Estado;
 
 public class EstadoDAOTest {
 	@Test
-	//@Ignore
+	@Ignore
 	public void salvar() {
 		Estado estado = new Estado();
 		estado.setNome("Paraná");
