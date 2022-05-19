@@ -13,16 +13,15 @@ import br.com.julio.drogaria.domain.Produto;
 public class ProdutoDAOTest {
 //-------------------------------------	Salvar -----------------------------------------------------//
 	@Test
-	@Ignore
 	public void salvar() {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		Fabricante fabricante = fabricanteDAO.buscar(4L);
+		Fabricante fabricante = fabricanteDAO.buscar(11L);
 
 		Produto produto = new Produto();
-		produto.setDescricao("Amoxilina 100mg cx com 50Un");
+		produto.setDescricao("Tandifram 100mg Cx C/50Un");
 		produto.setFabricante(fabricante);
-		produto.setPreco(new BigDecimal("20.00"));
-		produto.setQuantidade(new Short("23"));
+		produto.setPreco(new BigDecimal("35.10"));
+		produto.setQuantidade(new Short("6"));
 
 		ProdutoDAO produtoDAO = new ProdutoDAO();
 		produtoDAO.salvar(produto);
@@ -33,6 +32,7 @@ public class ProdutoDAOTest {
 
 //------------------------------------ Buscar ---------------------------------------------------------//	
 	@Test
+	@Ignore
 	public void buscar() {
 		Long codigo = 16L;
 

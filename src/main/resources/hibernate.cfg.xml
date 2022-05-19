@@ -27,7 +27,7 @@
 
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">update</property>
-		
+
 		<!-- Mapeamento das entidade -->
 		<mapping class="br.com.julio.drogaria.domain.Cidade"/>
 		<mapping class="br.com.julio.drogaria.domain.Cliente"/>
@@ -39,7 +39,7 @@
 		<mapping class="br.com.julio.drogaria.domain.Produto"/>
 		<mapping class="br.com.julio.drogaria.domain.Usuario"/>
 		<mapping class="br.com.julio.drogaria.domain.Venda"/>
-			
+
 
 	</session-factory>
 

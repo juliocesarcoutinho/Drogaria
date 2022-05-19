@@ -11,16 +11,15 @@ import br.com.julio.drogaria.domain.Estado;
 //----------------------------- Salvar -----------------------------------------//
 public class CidadeDAOTest {
 	@Test
-	@Ignore
 	public void salvar() {
 
 		EstadoDAO estadoDAO = new EstadoDAO();
-		Estado estado = estadoDAO.buscar(8L);
+		Estado estado = estadoDAO.buscar(4L);
 
 		Cidade cidade = new Cidade();
-		cidade.setNome("Porto Alegre");
+		cidade.setNome("Jacarezinho");
 		cidade.setEstado(estado);
-
+		
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidadeDAO.salvar(cidade);
 
@@ -28,6 +27,7 @@ public class CidadeDAOTest {
 
 // ------------------------------ Listar --------------------------------------//
 	@Test
+	@Ignore
 	public void listar() {
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		List<Cidade> resultado = cidadeDAO.listar();
