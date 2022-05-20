@@ -7,11 +7,12 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Estados</title>
+	<title>CLientes</title>
 </h:head>
 <h:body>
 	<h:form>
-		<p:panel h:header="Estados - Listagem">
+		<p:panel h:header="Clientes">
+
 			<p:dataTable emptyMessage="Nenhum Registro encontrado"
 				paginator="true">
 
@@ -19,10 +20,16 @@
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome:">
 				</p:column>
 
-				<p:column headerText="Sigla">
+				<p:column headerText="CPF:">
+				</p:column>
+
+				<p:column headerText="Data de Cadastro:">
+				</p:column>
+
+				<p:column headerText="Liberado:">
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -32,22 +39,34 @@
 
 		</p:panel>
 	</h:form>
-							<!-- Tela flutuante -->
-							
-	<p:dialog header="Cadastro de Estado" widgetVar="dialogo"
+	
+	                   <!-- Tela flutuante -->
+
+
+	<p:dialog header="Cadastro de Clientes" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
+
 		<h:form>
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Nome" />
 				<p:inputText maxlength="50" size="30" />
 
-				<p:outputLabel value="Sigla" />
-				<p:inputText maxlength="2" size="10" />
+				<p:outputLabel value="Pessoa" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um Pessoa" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data de Cadastro" />
+				<p:calendar />
+
+				<p:outputLabel value="Ativo" />
+				<p:selectBooleanCheckbox />
+
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
-				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 
 		</h:form>

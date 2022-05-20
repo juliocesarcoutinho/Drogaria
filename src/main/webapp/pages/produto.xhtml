@@ -7,11 +7,12 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Estados</title>
+	<title>Produtos</title>
 </h:head>
 <h:body>
 	<h:form>
-		<p:panel h:header="Estados - Listagem">
+		<p:panel h:header="Produtos">s
+
 			<p:dataTable emptyMessage="Nenhum Registro encontrado"
 				paginator="true">
 
@@ -22,7 +23,13 @@
 				<p:column headerText="Nome">
 				</p:column>
 
-				<p:column headerText="Sigla">
+				<p:column headerText="Qtd">
+				</p:column>
+
+				<p:column headerText="Preço">
+				</p:column>
+
+				<p:column headerText="Fabricante">
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -34,20 +41,29 @@
 	</h:form>
 							<!-- Tela flutuante -->
 							
-	<p:dialog header="Cadastro de Estado" widgetVar="dialogo"
+	<p:dialog header="Cadastro de Produtos" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
+
 		<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome" />
+				<p:outputLabel value="Descrição:" />
 				<p:inputText maxlength="50" size="30" />
-
-				<p:outputLabel value="Sigla" />
-				<p:inputText maxlength="2" size="10" />
+	
+				<p:outputLabel value="Estoque:"/>
+				<p:inputText maxlength="5" size="10"/>
+				
+				<p:outputLabel value="Preço:"/>
+				<p:inputText maxlength="7" size="10"/>
+				
+				<p:outputLabel value="Fabricante:"/>
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione o Fabricante"/>
+				</p:selectOneMenu>		
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
-				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 
 		</h:form>
