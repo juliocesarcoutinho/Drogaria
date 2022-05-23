@@ -15,4 +15,19 @@ public class FabricanteDAOTest {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		fabricanteDAO.salvar(fabricante);
 	}
+	
+		@Test
+		@Ignore
+		public void merge() {
+//			Fabricante fabricante = new Fabricante();
+//			fabricante.setDescricao("PharmaNew");
+//			
+//			FabricanteDAO fabricanteDAO = new FabricanteDAO();
+//			fabricanteDAO.merge(fabricante);
+			
+			FabricanteDAO fabricanteDAO = new FabricanteDAO();
+			Fabricante fabricante = fabricanteDAO.buscar(51L);
+			fabricante.setDescricao("NewPharma4");
+			fabricanteDAO.merge(fabricante);
+		}
 }

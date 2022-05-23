@@ -10,19 +10,24 @@
 	<title>Estados</title>
 </h:head>
 <h:body>
+	<p:growl id="mensagem" />
 	<h:form>
 		<p:panel h:header="Estados - Listagem">
 			<p:dataTable emptyMessage="Nenhum Registro encontrado"
-				paginator="true">
+				paginator="true" value="#{estadoBean.estados}" var="estado">
 
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+						actionListener="#{estadoBean.novo()}"
+						update=":formCadastro:painel" />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{estado.nome}">
+					<h:outputText value="#{estado.nome}" />
 				</p:column>
-
+					
 				<p:column headerText="Sigla">
+					<h:outputText value="#{estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -36,17 +41,21 @@
 
 	<p:dialog header="Cadastro de Estado" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
+		<h:form id="formCadastro">
+			<h:panelGrid id="painel" columns="2">
 				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30"
+					value="#{estadoBean.estado.nome}" />
 
 				<p:outputLabel value="Sigla" />
-				<p:inputText maxlength="2" size="10" />
+				<p:inputText maxlength="2" size="10"
+					value="#{estadoBean.estado.sigla}" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar}" />
+				<p:commandButton value="Salvar"
+					actionListener="#{estadoBean.salvar}"
+					update=":mensagem :formCadastro:painel" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 
