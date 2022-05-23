@@ -18,14 +18,13 @@ import br.com.julio.drogaria.domain.Estado;
 @ViewScoped
 public class EstadoBean implements Serializable {
 	private Estado estado;
-	
+
 	private List<Estado> estados;
-	
 
 	public Estado getEstado() {
 		return estado;
 	}
-	
+
 	public List<Estado> getEstados() {
 		return estados;
 	}
@@ -33,10 +32,11 @@ public class EstadoBean implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
+
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
 	}
+
 	@PostConstruct
 	public void listar() {
 		try {
@@ -69,11 +69,23 @@ public class EstadoBean implements Serializable {
 		}
 
 	}
-	
+
 	public void excluir(ActionEvent evento) {
-		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
-		Messages.addGlobalInfo("Nome: " + estado.getNome() + "Sigla" + estado.getSigla());
+		try {
+			estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estadoDAO.excluir(estado);
+			
+			estados = estadoDAO.listar();
+
+			Messages.addGlobalInfo("Estado Excluido com Sucesso");
+
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Erro ao Excluir o Estado");
+			erro.printStackTrace();
+		}
+
 	}
-	
-	
+
 }
