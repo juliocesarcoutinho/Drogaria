@@ -56,7 +56,7 @@ public class EstadoBean implements Serializable {
 
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estadoDAO.salvar(estado);
+			estadoDAO.merge(estado);
 
 			estado = new Estado();
 			estados = estadoDAO.listar();
@@ -86,6 +86,11 @@ public class EstadoBean implements Serializable {
 			erro.printStackTrace();
 		}
 
+	}
+	
+	public void editar(ActionEvent evento) {
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+		
 	}
 
 }
