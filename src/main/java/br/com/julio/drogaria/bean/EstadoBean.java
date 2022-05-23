@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -57,7 +58,8 @@ public class EstadoBean implements Serializable {
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estadoDAO.salvar(estado);
 
-			novo();
+			estado = new Estado();
+			estados = estadoDAO.listar();
 
 			Messages.addGlobalInfo("Estado Salvo com Sucesso");
 
@@ -67,5 +69,11 @@ public class EstadoBean implements Serializable {
 		}
 
 	}
-
+	
+	public void excluir(ActionEvent evento) {
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+		Messages.addGlobalInfo("Nome: " + estado.getNome() + "Sigla" + estado.getSigla());
+	}
+	
+	
 }
