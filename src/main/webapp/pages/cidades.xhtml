@@ -46,6 +46,12 @@
 							message="Deseja Realmente excluir a Cidade?" icon="ui-icon-alert" />
 						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
 					</p:commandButton>
+					
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{cidadeBean.editar()}"
+						update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show()">
+						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
+					</p:commandButton>
 
 				</p:column>
 
