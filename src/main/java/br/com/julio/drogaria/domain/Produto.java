@@ -22,7 +22,11 @@ public class Produto extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Fabricante fabricante;
-
+	
+	public Produto() {
+		this.fabricante = new Fabricante();
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
