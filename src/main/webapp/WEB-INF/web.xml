@@ -23,5 +23,9 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    
+    <listener>
+    	<listener-class>br.com.julio.drogaria.util.HibernateUtil</listener-class>
+    </listener>
 	
 </web-app>
