@@ -53,7 +53,8 @@ public class GenericDAO<Entidade> {
 		}
 				
 	}
-/////////////////////////// Buscar //////////////////////////////////////////////////////////////	
+/////////////////////////// Buscar //////////////////////////////////////////////////////////////
+	 
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public Entidade buscar(Long codigo) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
@@ -70,6 +71,7 @@ public class GenericDAO<Entidade> {
 	}
 	
 ///////////////////////Excluir/////////////////////////////////////////////////////////////
+	
 	public void excluir(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
