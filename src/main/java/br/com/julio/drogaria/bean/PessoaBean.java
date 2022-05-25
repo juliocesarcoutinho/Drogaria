@@ -1,6 +1,7 @@
 package br.com.julio.drogaria.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,10 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.julio.drogaria.dao.EstadoDAO;
 import br.com.julio.drogaria.dao.PessoaDAO;
+import br.com.julio.drogaria.domain.Cidade;
+import br.com.julio.drogaria.domain.Estado;
 import br.com.julio.drogaria.domain.Pessoa;
 
 @SuppressWarnings("serial")
@@ -19,6 +23,9 @@ import br.com.julio.drogaria.domain.Pessoa;
 public class PessoaBean implements Serializable {
 	private Pessoa pessoa;
 	private List<Pessoa> pessoas;
+
+	private List<Estado> estados;
+	private List<Cidade> cidades;
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -37,7 +44,24 @@ public class PessoaBean implements Serializable {
 		this.pessoas = pessoas;
 
 	}
-               // Ações //
+
+	public List<Estado> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
+	}
+
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
+	}
+
+	// Ações //
 	@PostConstruct
 	public void listar() {
 		try {
@@ -52,7 +76,19 @@ public class PessoaBean implements Serializable {
 	}
 
 	public void novo() {
-		pessoa = new Pessoa();
+
+		try {
+			pessoa = new Pessoa();
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+			
+			cidades = new ArrayList<Cidade>();
+			
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Erro ao gerar uma nova pessoa");
+			erro.printStackTrace();
+		}
 	}
 
 	public void salvar() {
@@ -78,7 +114,7 @@ public class PessoaBean implements Serializable {
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoaDAO.excluir(pessoa);
 
-			Messages.addGlobalInfo("Pessoa Salva com Sucesso");
+			Messages.addGlobalInfo("Pessoa excluida com Sucesso");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Erro ao excluir a pessoa");

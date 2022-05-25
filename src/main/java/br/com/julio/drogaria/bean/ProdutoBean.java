@@ -76,7 +76,7 @@ public class ProdutoBean implements Serializable {
 		produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 		
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		fabricantes = fabricanteDAO.listar();
+		fabricantes = fabricanteDAO.listar("nome");
 		
 	}
 	

@@ -26,7 +26,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Mapeamento das entidade -->
 		<mapping class="br.com.julio.drogaria.domain.Cidade"/>
