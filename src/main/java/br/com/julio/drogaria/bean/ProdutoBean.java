@@ -90,8 +90,12 @@ public class ProdutoBean implements Serializable {
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listar();
 			
+			produtos = produtoDAO.listar();
+			
+			Messages.addGlobalInfo("Produto salvo com sucesso");
+			
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao salvar clientes");
+			Messages.addGlobalError("Erro ao salvar o produto");
 			erro.printStackTrace();
 			// TODO: handle exception
 		}
