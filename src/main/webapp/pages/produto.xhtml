@@ -43,9 +43,9 @@
 				</p:column>
 
 				<p:column headerText="Preço">
-					<h:outputText value="#{produto.preco}" >
-					<f:convertNumber locale="pt_BR" minFractionDigits="2"/>
-				</h:outputText>	
+					<h:outputText value="#{produto.preco}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Fabricante">
@@ -98,19 +98,20 @@
 				<p:inputText maxlength="5" size="10"
 					value="#{produtoBean.produto.quantidade}" required="true"
 					requiredMessage="Quantidade de estoque Invalida"
-					converterMessage="Valor do Campo quantidade é invalida" validatorMessage="Valor do Estoque invalido" >
-					<f:validateLongRange minimum="0" maximum="10000"/>
-				</p:inputText>	
+					converterMessage="Valor do Campo quantidade é invalida"
+					validatorMessage="Valor do Estoque invalido">
+					<f:validateLongRange minimum="0" maximum="10000" />
+				</p:inputText>
 
 				<p:outputLabel value="Preço:" />
 				<p:inputText maxlength="7" size="10"
 					value="#{produtoBean.produto.preco}" required="true"
 					requiredMessage="Preço é Obrigatório"
 					converterMessage="Informe um valor do Produto"
-					validatorMessage="Valor do preço invalido" >
-				<f:validateDoubleRange minimum="0.01" maximum="9999.99" />
-				<f:convertNumber locale="pt_BR" minFractionDigits="2"/>
-				</p:inputText>	
+					validatorMessage="Valor do preço invalido">
+					<f:validateDoubleRange minimum="0.01" maximum="9999.99" />
+					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+				</p:inputText>
 
 				<p:outputLabel value="Fabricante:" />
 				<p:selectOneMenu filter="true"
