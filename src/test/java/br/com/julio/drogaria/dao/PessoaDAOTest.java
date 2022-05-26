@@ -6,7 +6,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.julio.drogaria.domain.Cidade;
-import br.com.julio.drogaria.domain.Cliente;
 import br.com.julio.drogaria.domain.Pessoa;
 
 public class PessoaDAOTest {
@@ -28,7 +27,7 @@ public class PessoaDAOTest {
 		pessoa.setRua("Professor Antônio Martins");
 		pessoa.setBairro("Vila Melgis");
 		pessoa.setNumero(new Short("146"));
-		pessoa.setComplemente("");
+		pessoa.setcomplemente("");
 
 		pessoa.setCidade(cidade);
 
@@ -45,6 +44,7 @@ public class PessoaDAOTest {
 		Long codigo = 20L;
 
 		PessoaDAO pessoaDAO = new PessoaDAO();
+		@SuppressWarnings("unused")
 		Pessoa pessoa = pessoaDAO.buscar(codigo);
 
 		System.out.println("O resultado é: " + codigo);
@@ -52,6 +52,7 @@ public class PessoaDAOTest {
 	}
 	
 // --------------------------------------------- Listar ---------------------------------------------------------------------
+	@SuppressWarnings("unused")
 	@Test
 	@Ignore
 	public void listar() {

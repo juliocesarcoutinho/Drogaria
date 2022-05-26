@@ -10,45 +10,40 @@ import javax.persistence.ManyToOne;
 public class Pessoa extends GenericDomain {
 	@Column(length = 50, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 14, nullable = false)
 	private String cpf;
-	
+
 	@Column(length = 12, nullable = false)
 	private String rg;
-	
-	@Column(length = 50, nullable = false)
+
+	@Column(length = 100, nullable = false)
 	private String rua;
-	
+
 	@Column(nullable = false)
 	private Short numero;
-	
-	@Column(length = 50, nullable = false)
+
+	@Column(length = 30, nullable = false)
 	private String bairro;
-	
-	@Column(length = 9, nullable = false)
+
+	@Column(length = 10, nullable = false)
 	private String cep;
-	
-	@Column(length = 20)
+
+	@Column(length = 10)
 	private String complemente;
-	
+
 	@Column(length = 13, nullable = false)
 	private String telefone;
-	
-	@Column(length = 15, nullable = false)
+
+	@Column(length = 14, nullable = false)
 	private String celular;
-	
-	@Column(length = 50, nullable = false)
+
+	@Column(length = 100, nullable = false)
 	private String email;
-	
+
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Cidade cidade;
-	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Estado estado;
-	
 
 	public String getNome() {
 		return nome;
@@ -106,11 +101,11 @@ public class Pessoa extends GenericDomain {
 		this.cep = cep;
 	}
 
-	public String getComplemente() {
+	public String getcomplemente() {
 		return complemente;
 	}
 
-	public void setComplemente(String complemente) {
+	public void setcomplemente(String complemente) {
 		this.complemente = complemente;
 	}
 
@@ -145,14 +140,4 @@ public class Pessoa extends GenericDomain {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
-	public Estado getEstado() {
-		return estado;
-	}
-	
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	
-	
 }
