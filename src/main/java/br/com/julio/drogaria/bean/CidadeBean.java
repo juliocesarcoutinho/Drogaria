@@ -47,7 +47,7 @@ public class CidadeBean implements Serializable {
 		this.cidades = cidades;
 	}
 
-	@PostConstruct()
+	@PostConstruct
 	public void listar() {
 		try {
 			CidadeDAO cidadeDAO = new CidadeDAO();

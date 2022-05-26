@@ -10,8 +10,9 @@
 	<title>Fabricante</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel h:header="Fabricante">
+	<p:growl id="mensagem" />
+	<h:form id="formListagem">
+		<p:panel h:header="Listagem de Fabricantes">
 
 			<p:dataTable emptyMessage="Nenhum Registro encontrado"
 				paginator="true">
@@ -30,15 +31,16 @@
 
 		</p:panel>
 	</h:form>
-						<!-- Tela flutuante -->
-						
+	<!-- Tela flutuante -->
+
 	<p:dialog header="Cadastro de Fabricantes" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
 
 		<h:form>
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" required="true"
+					requiredMessage="Campo nome obrigatório" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">

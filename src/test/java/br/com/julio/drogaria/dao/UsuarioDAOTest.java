@@ -1,5 +1,6 @@
 package br.com.julio.drogaria.dao;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.julio.drogaria.domain.Pessoa;
@@ -7,6 +8,7 @@ import br.com.julio.drogaria.domain.Usuario;
 
 public class UsuarioDAOTest {
 	@Test
+	@Ignore
 	public void salvar() {
 		
 		PessoaDAO pessoaDAO = new PessoaDAO();
