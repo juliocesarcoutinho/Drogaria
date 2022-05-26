@@ -24,7 +24,9 @@ public class PessoaBean implements Serializable {
 	private Pessoa pessoa;
 	private List<Pessoa> pessoas;
 
+	private Estado estado;
 	private List<Estado> estados;
+
 	private List<Cidade> cidades;
 
 	public Pessoa getPessoa() {
@@ -53,6 +55,16 @@ public class PessoaBean implements Serializable {
 		this.estados = estados;
 	}
 
+	public Estado getEstado() {
+		return estado;
+
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+
+	}
+
 	public List<Cidade> getCidades() {
 		return cidades;
 	}
@@ -79,12 +91,12 @@ public class PessoaBean implements Serializable {
 
 		try {
 			pessoa = new Pessoa();
-			
+
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estados = estadoDAO.listar("nome");
-			
+
 			cidades = new ArrayList<Cidade>();
-			
+
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Erro ao gerar uma nova pessoa");
 			erro.printStackTrace();
@@ -126,4 +138,11 @@ public class PessoaBean implements Serializable {
 		pessoa = (Pessoa) evento.getComponent().getAttributes().get("pessoaSelecionada");
 
 	}
+	
+	public void popular() {
+		if(estado != null) {
+			
+		}
+	}
+
 }
