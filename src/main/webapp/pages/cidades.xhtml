@@ -22,8 +22,9 @@
 				<f:facet name="header">
 					<p:commandButton value="Novo" actionListener="#{cidadeBean.novo()}"
 						update=":mensagem :formCadastro:painel"
-						oncomplete="PF('dialogo').show();" >
-						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						oncomplete="PF('dialogo').show();">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</f:facet>
 
@@ -47,7 +48,7 @@
 						<p:confirm header="Confirmação"
 							message="Deseja Realmente excluir a Cidade?" icon="ui-icon-alert" />
 						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
-						
+
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
@@ -55,7 +56,8 @@
 						update=":mensagem :formCadastro:painel"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
-						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 
@@ -82,7 +84,8 @@
 					requiredMessage="O campo 'Nome' é obrigatório" />
 
 				<p:outputLabel for="estado" value="Estado:" />
-				<p:selectOneMenu id="estado" filter="true" value="#{cidadeBean.cidade.estado}"
+				<p:selectOneMenu id="estado" filter="true"
+					value="#{cidadeBean.cidade.estado}"
 					converter="omnifaces.SelectItemsConverter" required="true"
 					requiredMessage="O campo 'Estado' é Obrigatório">
 					<f:selectItem noSelectionOption="true"
