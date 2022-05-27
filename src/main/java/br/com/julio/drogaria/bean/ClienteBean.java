@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -52,6 +53,7 @@ public class ClienteBean implements Serializable {
 		try {
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clientes = clienteDAO.listar("dataCadastro");
+
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os clientes");
 			erro.printStackTrace();
@@ -76,15 +78,37 @@ public class ClienteBean implements Serializable {
 			clienteDAO.merge(cliente);
 
 			cliente = new Cliente();
-			
+
 			clientes = clienteDAO.listar("dataCadastro");
 
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listar("nome");
-			
+
 			Messages.addGlobalInfo("Cliente salvo com sucesso");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o cliente");
+			erro.printStackTrace();
+		}
+	}
+
+	public void excluir(ActionEvent evento) {
+		cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+		
+		ClienteDAO clienteDAO = new ClienteDAO();
+		clienteDAO.excluir(cliente);
+		
+		clientes = clienteDAO.listar();
+	}
+
+	public void editar(ActionEvent evento) {
+		try {
+			cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+
+			PessoaDAO pessoaDAO = new PessoaDAO();
+			pessoas = pessoaDAO.listar();
+
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Erro ao editar o cliente");
 			erro.printStackTrace();
 		}
 	}

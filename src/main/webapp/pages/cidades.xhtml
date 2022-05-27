@@ -41,9 +41,8 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{cidadeBean.excluir}"
+					actionListener="#{cidadeBean.excluir}"
 						update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação"
 							message="Deseja Realmente excluir a Cidade?" icon="ui-icon-alert" />
@@ -59,6 +58,7 @@
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
+					
 				</p:column>
 
 			</p:dataTable>
