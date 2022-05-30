@@ -70,7 +70,7 @@
 		</p:panel>
 	</h:form>
 
-	<p:dialog header="Usuários - Cadastro" widgetVar="dialogo"
+	<p:dialog header="Cadastro de Usuários" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
@@ -89,8 +89,8 @@
 				<p:password id="senha" maxlength="8" size="10"
 					value="#{usuarioBean.usuario.senha}" required="true"
 					requiredMessage="O campo 'Senha' é obrigatório"
-					validatorMessage="Informe uma senha">
-					<f:validateLength minimum="6" maximum="8" />
+					validatorMessage="Informe uma senha de no minimo 1 digito">
+					<f:validateLength minimum="1" maximum="8" />
 				</p:password>
 
 				<p:outputLabel for="tipo" value="Tipo:" />
