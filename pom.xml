@@ -38,7 +38,7 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-	
+
 	<!-- Dependências -->
 	<dependencies>
 
@@ -99,6 +99,14 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Jersey -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
 		<!-- Javax -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
