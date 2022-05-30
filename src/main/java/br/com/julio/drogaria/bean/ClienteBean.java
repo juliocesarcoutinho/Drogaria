@@ -66,6 +66,7 @@ public class ClienteBean implements Serializable {
 
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listar("nome");
+			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar criar um novo cliente");
 			erro.printStackTrace();
@@ -98,6 +99,8 @@ public class ClienteBean implements Serializable {
 		clienteDAO.excluir(cliente);
 		
 		clientes = clienteDAO.listar();
+		
+		Messages.addGlobalInfo("Cliente Excluido com sucesso");
 	}
 
 	public void editar(ActionEvent evento) {
