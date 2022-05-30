@@ -35,11 +35,11 @@
 				</p:column>
 
 				<p:column headerText="Tipo" sortBy="#{usuario.tipo}">
-					<h:outputText value="#{usuario.tipo}" />
+					<h:outputText value="#{usuario.tipoFormatado}" />
 				</p:column>
 
-				<p:column headerText="Ativo" sortBy="#{usuario.ativo}">
-					<h:outputText value="#{usuario.ativo}" />
+				<p:column headerText="Ativo" sortBy="#{usuario.ativoFormatado()}">
+					<h:outputText value="#{usuario.ativoFormatado()}" />
 				</p:column>
 
 				<p:column headerText="Opções">
