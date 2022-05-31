@@ -100,13 +100,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Jersey -->
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet</artifactId>
-			<version>3.0.4</version>
-		</dependency>
-
 		<!-- Javax -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
