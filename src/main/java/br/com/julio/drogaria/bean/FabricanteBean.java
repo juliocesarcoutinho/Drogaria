@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 
 import com.google.gson.Gson;
@@ -45,18 +46,18 @@ public class FabricanteBean implements Serializable {
 	@PostConstruct
 	public void listar() {
 		try {
-			//FabricanteDAO fabricanteDAO = new FabricanteDAO();
-			//fabricantes = fabricanteDAO.listar();
-			
+			// FabricanteDAO fabricanteDAO = new FabricanteDAO();
+			// fabricantes = fabricanteDAO.listar();
+
 			Client cliente = ClientBuilder.newClient();
 			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
 			String json = caminho.request().get(String.class);
-			
+
 			Gson gson = new Gson();
 			Fabricante[] vetor = gson.fromJson(json, Fabricante[].class);
-			
+
 			fabricantes = Arrays.asList(vetor);
- 		} catch (RuntimeException erro) {
+		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os fabricantes");
 			erro.printStackTrace();
 		}
@@ -68,11 +69,27 @@ public class FabricanteBean implements Serializable {
 
 	public void salvar() {
 		try {
-			FabricanteDAO fabricanteDAO = new FabricanteDAO();
-			fabricanteDAO.merge(fabricante);
+//			FabricanteDAO fabricanteDAO = new FabricanteDAO();
+//			fabricanteDAO.merge(fabricante);
+//
+//			fabricante = new Fabricante();
+//			fabricantes = fabricanteDAO.listar();
+
+			Client cliente = ClientBuilder.newClient();
+			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
+
+			Gson gson = new Gson();
+			String json = gson.toJson(fabricante);
+
+			caminho.request().post(Entity.json(json));
 
 			fabricante = new Fabricante();
-			fabricantes = fabricanteDAO.listar();
+
+			json = caminho.request().get(String.class);
+
+			Fabricante[] vetor = gson.fromJson(json, Fabricante[].class);
+
+			fabricantes = Arrays.asList(vetor);
 
 			Messages.addGlobalInfo("Fabricante salvo com sucesso");
 		} catch (RuntimeException erro) {
@@ -100,4 +117,4 @@ public class FabricanteBean implements Serializable {
 	public void editar(ActionEvent evento) {
 		fabricante = (Fabricante) evento.getComponent().getAttributes().get("fabricanteSelecionado");
 	}
-}	
+}
