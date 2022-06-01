@@ -40,7 +40,7 @@ public class FabricanteService {
 		return json;
 	}
 
-	@POST // Pode usar o Post pra editar usando o merge//
+	@POST
 	public String salvar(String json) {
 		Gson gson = new Gson();
 		Fabricante fabricante = gson.fromJson(json, Fabricante.class);
@@ -50,7 +50,6 @@ public class FabricanteService {
 
 		String jsonSaida = gson.toJson(fabricante);
 		return jsonSaida;
-
 	}
 
 	@PUT
@@ -59,23 +58,22 @@ public class FabricanteService {
 		Fabricante fabricante = gson.fromJson(json, Fabricante.class);
 
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		fabricanteDAO.merge(fabricante);
+		fabricanteDAO.editar(fabricante);
 
 		String jsonSaida = gson.toJson(fabricante);
 		return jsonSaida;
-
 	}
 
+
 	@DELETE
-	public String excluir(String json) {
-		Gson gson = new Gson();
-		Fabricante fabricante = gson.fromJson(json, Fabricante.class);
-
+	@Path("{codigo}")
+	public String excluir(@PathParam("codigo") Long codigo){
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		fabricante = fabricanteDAO.buscar(fabricante.getCodigo());
-
+		
+		Fabricante fabricante = fabricanteDAO.buscar(codigo);
 		fabricanteDAO.excluir(fabricante);
 		
+		Gson gson = new Gson();
 		String saida = gson.toJson(fabricante);
 		return saida;
 	}
