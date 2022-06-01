@@ -108,7 +108,7 @@ public class PessoaBean implements Serializable {
 			cidades = cidadeDAO.listar();
 
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listar("nome");
 
 			estado = pessoa.getCidade().getEstado();
 		} catch (RuntimeException erro) {
@@ -132,6 +132,8 @@ public class PessoaBean implements Serializable {
 			cidades = new ArrayList<>();
 			
 			estado = new Estado();
+			
+			Messages.addGlobalInfo("Pessoa Salva com Sucesso");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a pessoa");
