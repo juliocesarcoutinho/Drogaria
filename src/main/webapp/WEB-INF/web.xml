@@ -17,6 +17,12 @@
 		<!--<param-value>afterdark</param-value> -->
 	</context-param>
 
+	<!-- Definição do Mecanismo de Upload -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
 	<!-- Estagio do Projeto -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
