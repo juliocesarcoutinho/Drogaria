@@ -15,16 +15,26 @@ import org.omnifaces.util.Messages;
 import br.com.julio.drogaria.dao.ProdutoDAO;
 import br.com.julio.drogaria.domain.ItemVenda;
 import br.com.julio.drogaria.domain.Produto;
+import br.com.julio.drogaria.domain.Venda;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
 public class VendaBean implements Serializable {
+	private Venda venda;
 	private List<Produto> produtos;
 	private List<ItemVenda> itensVenda;
 
 	public List<Produto> getProdutos() {
 		return produtos;
+	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
@@ -40,12 +50,17 @@ public class VendaBean implements Serializable {
 	}
 
 	/*
-	 * =======================================================
-	 * Listar produtos na dataTable
-	 * ======================================================*/
+	 * =============================================================================
+	 * ===================== Listar produtos na dataTable ==========================
+	 * =============================================================================
+	 */
 	@PostConstruct
-	public void listar() {
+	public void novo() {
 		try {
+
+			venda = new Venda();
+			venda.setPrecoTotal(new BigDecimal("0.00"));
+
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			produtos = produtoDAO.listar("descricao");
 
@@ -55,10 +70,12 @@ public class VendaBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
+
 	/*
-	 * =======================================================
-	 * Adicionar produtos na dataTable
-	 * ======================================================*/
+	 * =============================================================================
+	 * ================== Adicionar produtos na dataTable ==========================
+	 * =============================================================================
+	 */
 	public void adicionar(ActionEvent evento) {
 		Produto produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 
@@ -82,12 +99,16 @@ public class VendaBean implements Serializable {
 			itemVenda.setQuantidade(new Short(itemVenda.getQuantidade() + 1 + ""));
 			itemVenda.setValorParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
 		}
+		
+		calcular();
 
 	}
+
 	/*
-	 * =======================================================
-	 * Remover todos os produtos na dataTable
-	 * ======================================================*/
+	 * =============================================================================
+	 * =============== Remover todos os produtos na dataTable ======================
+	 * =============================================================================
+	 */
 	public void remover(ActionEvent evento) {
 		ItemVenda itemVenda = (ItemVenda) evento.getComponent().getAttributes().get("botaoSelecionado");
 
@@ -100,11 +121,14 @@ public class VendaBean implements Serializable {
 		}
 
 		itensVenda.remove(achou);
+		calcular();
 	}
+
 	/*
-	 * =======================================================
-	 * Remover item produtos na dataTable
-	 * ======================================================*/
+	 * =============================================================================
+	 * ================== Remover item produtos na dataTable =======================
+	 * =============================================================================
+	 */
 	public void diminuir(ActionEvent evento) {
 		ItemVenda itemVendaEvento = (ItemVenda) evento.getComponent().getAttributes().get("itemSelecionado");
 
@@ -124,6 +148,22 @@ public class VendaBean implements Serializable {
 			if (itemVenda.getQuantidade() <= 0) {
 				itensVenda.remove(achou);
 			}
+		}
+		
+		calcular();
+	}
+	/*
+	 * =============================================================================
+	 * ========================== Calcular* Venda ==================================
+	 * =============================================================================
+	 */
+	
+	public void calcular() {
+		venda.setPrecoTotal(new BigDecimal("0.00"));
+		
+		for(int posicao = 0; posicao < itensVenda.size(); posicao++) {
+			ItemVenda itemVenda = itensVenda.get(posicao);
+			venda.setPrecoTotal(venda.getPrecoTotal().add(itemVenda.getValorParcial()));
 		}
 	}
 }
