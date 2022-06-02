@@ -39,6 +39,10 @@ public class VendaBean implements Serializable {
 		this.itensVenda = itensVenda;
 	}
 
+	/*
+	 * =======================================================
+	 * Listar produtos na dataTable
+	 * ======================================================*/
 	@PostConstruct
 	public void listar() {
 		try {
@@ -51,7 +55,10 @@ public class VendaBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-
+	/*
+	 * =======================================================
+	 * Adicionar produtos na dataTable
+	 * ======================================================*/
 	public void adicionar(ActionEvent evento) {
 		Produto produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 
@@ -77,17 +84,46 @@ public class VendaBean implements Serializable {
 		}
 
 	}
+	/*
+	 * =======================================================
+	 * Remover todos os produtos na dataTable
+	 * ======================================================*/
 	public void remover(ActionEvent evento) {
-		ItemVenda itemVenda = (ItemVenda) evento.getComponent().getAttributes().get("itemSelecionado");
-		
+		ItemVenda itemVenda = (ItemVenda) evento.getComponent().getAttributes().get("botaoSelecionado");
+
 		int achou = -1;
-		for(int posicao = 0; posicao < itensVenda.size(); posicao++) {
-			if(itensVenda.get(posicao).getProdutos().equals(itemVenda.getProdutos())) {
-				achou = posicao;
+
+		for (int i = 0; i < itensVenda.size(); i++) {
+			if (itensVenda.get(i).getProdutos().equals(itemVenda.getProdutos())) {
+				achou = i;
 			}
 		}
-		if(achou > -1) {
-			itensVenda.remove(achou);
+
+		itensVenda.remove(achou);
+	}
+	/*
+	 * =======================================================
+	 * Remover item produtos na dataTable
+	 * ======================================================*/
+	public void diminuir(ActionEvent evento) {
+		ItemVenda itemVendaEvento = (ItemVenda) evento.getComponent().getAttributes().get("itemSelecionado");
+
+		int achou = -1;
+
+		for (int i = 0; i < itensVenda.size(); i++) {
+			if (itensVenda.get(i).getProdutos().equals(itemVendaEvento.getProdutos())) {
+				achou = i;
+			}
+		}
+
+		if (achou >= 0) {
+			ItemVenda itemVenda = itensVenda.get(achou);
+			itemVenda.setQuantidade(new Short(itemVenda.getQuantidade() - 1 + ""));
+			itemVenda.setValorParcial(itemVenda.getValorParcial().subtract(itemVenda.getProdutos().getPreco()));
+
+			if (itemVenda.getQuantidade() <= 0) {
+				itensVenda.remove(achou);
+			}
 		}
 	}
 }
