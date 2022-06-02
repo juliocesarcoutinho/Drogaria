@@ -13,6 +13,8 @@ import javax.faces.event.ActionEvent;
 import org.omnifaces.util.Messages;
 
 import br.com.julio.drogaria.dao.ProdutoDAO;
+import br.com.julio.drogaria.domain.Cliente;
+import br.com.julio.drogaria.domain.Funcionario;
 import br.com.julio.drogaria.domain.ItemVenda;
 import br.com.julio.drogaria.domain.Produto;
 import br.com.julio.drogaria.domain.Venda;
@@ -24,6 +26,8 @@ public class VendaBean implements Serializable {
 	private Venda venda;
 	private List<Produto> produtos;
 	private List<ItemVenda> itensVenda;
+	private List<Cliente> clientes;
+	private List<Funcionario> funcionarios;
 
 	public List<Produto> getProdutos() {
 		return produtos;
@@ -47,6 +51,18 @@ public class VendaBean implements Serializable {
 
 	public void setItensVenda(List<ItemVenda> itensVenda) {
 		this.itensVenda = itensVenda;
+	}
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
 	}
 
 	/*
