@@ -13,9 +13,9 @@
 
 	<h:form id="formulario">
 		<p:panel header="Produtos">
-			<p:dataTable id="tabelaProduto" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{vendaBean.produtos}" var="produto"
-				rows="10">
+			<p:dataTable id="tabelaProduto"
+				emptyMessage="Nenhum registro encontrado." paginator="true"
+				value="#{vendaBean.produtos}" var="produto" rows="10">
 
 				<p:column headerText="Descrição" filterBy="#{produto.descricao}"
 					sortBy="#{produto.descricao}">
@@ -39,7 +39,8 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-plus" actionListener="#{vendaBean.adicionar}"
+					<p:commandButton icon="ui-icon-plus"
+						actionListener="#{vendaBean.adicionar}"
 						update=":formulario:tabelaCesta">
 						<f:attribute name="produtoSelecionado" value="#{produto}" />
 					</p:commandButton>
@@ -48,9 +49,9 @@
 		</p:panel>
 
 		<p:panel header="Cesta de Compras">
-			<p:dataTable id="tabelaCesta" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{vendaBean.itensVenda}" var="itemVenda"
-				rows="10">
+			<p:dataTable id="tabelaCesta"
+				emptyMessage="Nenhum registro encontrado." paginator="true"
+				value="#{vendaBean.itensVenda}" var="itemVenda" rows="10">
 
 				<p:column headerText="Descrição">
 					<h:outputText value="#{itemVenda.produtos.descricao}" />
@@ -65,7 +66,7 @@
 				<p:column headerText="Qtde.">
 					<h:outputText value="#{itemVenda.quantidade}" />
 				</p:column>
-				
+
 				<p:column headerText="Total Item">
 					<h:outputText value="#{itemVenda.valorParcial}">
 						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
@@ -73,7 +74,10 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-minus" />
+					<p:commandButton icon="ui-icon-minus"
+						actionListener="#{vendaBean.remover}" update=":formulario:tabelaCesta" >
+						<f:attribute name="itemSelecionado" value="#{itemVenda}" />
+					</p:commandButton>	
 				</p:column>
 			</p:dataTable>
 		</p:panel>
