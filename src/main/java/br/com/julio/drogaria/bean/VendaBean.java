@@ -3,6 +3,7 @@ package br.com.julio.drogaria.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +13,10 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.julio.drogaria.dao.ClienteDAO;
+import br.com.julio.drogaria.dao.FuncionarioDAO;
 import br.com.julio.drogaria.dao.ProdutoDAO;
+import br.com.julio.drogaria.dao.VendaDAO;
 import br.com.julio.drogaria.domain.Cliente;
 import br.com.julio.drogaria.domain.Funcionario;
 import br.com.julio.drogaria.domain.ItemVenda;
@@ -182,4 +186,42 @@ public class VendaBean implements Serializable {
 			venda.setPrecoTotal(venda.getPrecoTotal().add(itemVenda.getValorParcial()));
 		}
 	}
+	/*
+	 * =============================================================================
+	 * ========================== Calcular* Venda ==================================
+	 * =============================================================================
+	 */
+	
+	public void finalizar(){
+		try{
+			venda.setHorario(new Date());
+			
+			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+			funcionarios = funcionarioDAO.listarOrdenado();
+			
+			ClienteDAO clienteDAO = new ClienteDAO();
+			clientes = clienteDAO.listarOrdenado();
+		}catch(RuntimeException erro){
+			Messages.addGlobalError("Erro ao finalizar a venda");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void salvar() {
+		try {
+			if(venda.getPrecoTotal().signum() == 0) {
+				Messages.addGlobalError("Informe pelo menos um item para a venda");
+				return;
+			}
+			
+			VendaDAO vendaDAO = new VendaDAO();
+			vendaDAO.salvar(venda, itensVenda);
+			
+			Messages.addGlobalInfo("Venda Salva com Sucesso");
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Erro ao Salvar uma venda");
+			erro.printStackTrace();
+		}
+	}
+	
 }
