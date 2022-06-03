@@ -17,7 +17,7 @@ public class FuncionarioDAOTest {
 	public void salvar() {
 
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(26l);
+		Pessoa pessoa = pessoaDAO.buscar(36l);
 
 		Funcionario funcionario = new Funcionario();
 		funcionario.setCarteiraTrabalho("12345678954");
