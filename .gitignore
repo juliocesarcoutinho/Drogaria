@@ -109,3 +109,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+src/test/java/br/com/julio/drogaria/dao/FuncionarioDAOTest.java
