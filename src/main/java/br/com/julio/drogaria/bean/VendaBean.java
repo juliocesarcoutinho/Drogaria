@@ -195,6 +195,8 @@ public class VendaBean implements Serializable {
 	public void finalizar(){
 		try{
 			venda.setHorario(new Date());
+			venda.setCliente(null);
+			venda.setFuncionario(null);
 			
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 			funcionarios = funcionarioDAO.listarOrdenado();
@@ -217,7 +219,10 @@ public class VendaBean implements Serializable {
 			VendaDAO vendaDAO = new VendaDAO();
 			vendaDAO.salvar(venda, itensVenda);
 			
+			novo();
+			
 			Messages.addGlobalInfo("Venda Salva com Sucesso");
+			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Erro ao Salvar uma venda");
 			erro.printStackTrace();
