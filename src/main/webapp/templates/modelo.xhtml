@@ -8,7 +8,7 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>SigDro</title>
+	<title>Drogaria Coutinho</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
@@ -24,17 +24,18 @@
 			<h:form>
 				<p:menubar id="formMenu">
 					<p:submenu label="Cadastros">
-						<p:menuitem value="Estados" />
-						<p:menuitem value="Cidades" />
-						<p:menuitem value="Fabricantes" />
-						<p:menuitem value="Produtos" />
-						<p:menuitem value="Pessoas" />
-						<p:menuitem value="Clientes" />
-						<p:menuitem value="Funcionarios" />
+						<p:menuitem value="Estados" url="/pages/estados.xhtml" />
+						<p:menuitem value="Cidades" url="/pages/cidades.xhtml" />
+						<p:menuitem value="Fabricantes" url="/pages/fabricante.xhtml" />
+						<p:menuitem value="Produtos" url="/pages/produto.xhtml" />
+						<p:menuitem value="Pessoas" url="/pages/pessoa.xhtml" />
+						<p:menuitem value="Clientes" url="/pages/cliente.xhtml" />
+						<p:menuitem value="Funcionarios" url="/pages/funcionario.xhtml" />
+						<p:menuitem value="Usuarios" url="/pages/usuario.xhtml" />
 					</p:submenu>
 
 					<p:submenu label="Movimentações">
-						<p:menuitem value="Vendas" />
+						<p:menuitem value="Vendas" url="/pages/venda.xhtml" />
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
