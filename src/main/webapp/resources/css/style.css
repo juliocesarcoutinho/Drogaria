@@ -13,3 +13,7 @@
 .divCabecalho {
 	padding: 5px;
 }
+
+.alinhamentoItens {
+	align-items: center;
+}
