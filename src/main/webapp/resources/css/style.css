@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.imgBanner {
+	display: block;
+	margin: auto;
+	
+}
+
+.divTopo {
+	padding: 10px;
+}
+
+.divCabecalho {
+	padding: 5px;
+}
