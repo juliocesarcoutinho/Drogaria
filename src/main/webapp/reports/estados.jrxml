@@ -39,8 +39,11 @@ ORDER BY drogaria.estado.nome ASC]]>
 		<band height="44" splitType="Stretch">
 			<staticText>
 				<reportElement x="2" y="0" width="554" height="44" uuid="85921104-b00e-42ef-b048-4d12431b7af2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-					<font fontName="Trebuchet MS" size="26"/>
+					<font fontName="Trebuchet MS" size="26" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de Estados]]></text>
 			</staticText>
