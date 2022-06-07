@@ -20,6 +20,19 @@ public class HibernateUtil {
 	public static SessionFactory getFabricaDeSessoes() {
 		return fabricaDeSessoes;
 	}
+	
+public static Connection novaConexao() {
+		Session sessao = fabricaDeSessoes.openSession();
+		
+		Connection conexao = sessao.doReturningWork(new ReturningWork<Connection>() {
+			@Override
+			public Connection execute(Connection conn) throws SQLException {
+				return conn;
+			}
+		});
+		
+		return conexao;
+	}
 
 	public static Connection getConexao() {
 		Session sessao = fabricaDeSessoes.openSession();
