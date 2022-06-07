@@ -18,6 +18,7 @@
 					<f:facet name="header">
 						<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 							actionListener="#{estadoBean.novo}" update=":formCadastro:painel" />
+						<p:commandButton value="Relatório" actionListener="#{estadoBean.imprimir}"/>
 					</f:facet>
 
 

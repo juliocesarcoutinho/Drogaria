@@ -1,17 +1,26 @@
 package br.com.julio.drogaria.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.com.julio.drogaria.dao.EstadoDAO;
 import br.com.julio.drogaria.domain.Estado;
+import br.com.julio.drogaria.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -91,6 +100,23 @@ public class EstadoBean implements Serializable {
 	public void editar(ActionEvent evento) {
 		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
 		
+	}
+	
+	public void imprimir() {
+		try {
+			String caminho = Faces.getRealPath("/reports/estados.jasper");
+
+			Map<String, Object> parametros = new HashMap<>();
+
+			Connection conexao = HibernateUtil.novaConexao();
+
+			JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
+			
+			JasperPrintManager.printReport(relatorio, true);
+		} catch (JRException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");
+			erro.printStackTrace();
+		}
 	}
 
 }

@@ -170,7 +170,7 @@ public class ProdutoBean implements Serializable {
 	
 	public void imprimir() {
 		try {
-			String caminho = Faces.getRealPath("/reports/produto.jasper");
+			String caminho = Faces.getRealPath("/reports/produtos.jasper");
 
 			Map<String, Object> parametros = new HashMap<>();
 
