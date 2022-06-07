@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cidade" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b8a7ddb6-68bd-4590-a390-f8be6c4eae94">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Drogaria"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT drogaria.cidade.nome AS cnome,
+	drogaria.estado.nome as enome,
+	drogaria.estado.sigla
+FROM drogaria.cidade
+	INNER JOIN drogaria.estado ON 
+	 drogaria.cidade.estado_codigo = drogaria.estado.codigo 
+ORDER BY drogaria.cidade.nome ASC,
+	drogaria.estado.nome ASC]]>
+	</queryString>
+	<field name="cnome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="cnome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cidade"/>
+	</field>
+	<field name="enome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="enome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estado"/>
+	</field>
+	<field name="sigla" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sigla"/>
+		<property name="com.jaspersoft.studio.field.label" value="sigla"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estado"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="555" height="79" uuid="985c6770-6633-4629-b4fa-0740131c38c4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="34" uuid="a87515b6-2690-45b8-ab81-5c3db3b77f78"/>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="26" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Cidades]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="64ff8b1c-351a-4b65-87bb-047d55d06110">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6cd1c14d-0dd3-4c47-a245-f7bd87862952"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="30" uuid="edb6bac8-ceb2-4011-876a-0f2a2129aa98">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="05c7dff2-66e0-48bb-bb41-55efd28d658b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="30" uuid="47739fab-09f2-47b5-9a61-dd9d991a19bf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a99beb90-7f2e-4791-a64e-7f9c31c9e923"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="2cb6ab78-28ef-48ba-affb-48132935b9a9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6cd1c14d-0dd3-4c47-a245-f7bd87862952"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cnome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="eb41f69a-fa87-42f5-9d4b-4cf08276ec3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="05c7dff2-66e0-48bb-bb41-55efd28d658b"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="100" height="30" uuid="a9b390dc-6cc5-4d63-973f-8684c45d64c7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a99beb90-7f2e-4791-a64e-7f9c31c9e923"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sigla}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="1703bce0-96a6-4dee-825b-2e1e4c3cd3b1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Trebuchet MS" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rua: Professor Antônio Martins Nº 146, Vila Melgis Ipaussu-SP CEP: 18950-009]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
