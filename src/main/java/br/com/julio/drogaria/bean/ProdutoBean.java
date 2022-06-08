@@ -18,6 +18,7 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -170,9 +171,25 @@ public class ProdutoBean implements Serializable {
 	
 	public void imprimir() {
 		try {
+			DataTable tabela = (DataTable) Faces.getViewRoot().findComponent("formListagem:tabela");
+			Map<String, Object> filtros = tabela.getFilters();
+			
+			String prodDescricao = (String) filtros.get("descricao");
+			String fabDescricao = (String) filtros.get("fabricante.descricao");
+			
 			String caminho = Faces.getRealPath("/reports/produtos.jasper");
 
 			Map<String, Object> parametros = new HashMap<>();
+			if(prodDescricao == null) {
+				parametros.put("PRODUTO_DESCRICAO", "%%");
+			}else {
+				parametros.put("PRODUTO_DESCRICAO", "%" + prodDescricao + "%");
+			}
+			if(fabDescricao == null) {
+				parametros.put("FABRICANTE_DESCRICAO", "%%");
+			}else {
+				parametros.put("FABRICANTE_DESCRICAO", "%" + fabDescricao + "%");
+			}
 
 			Connection conexao = HibernateUtil.novaConexao();
 
