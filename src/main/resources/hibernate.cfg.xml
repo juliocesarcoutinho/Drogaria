@@ -29,6 +29,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Mapeamento das entidade -->
+		<mapping class="br.com.julio.drogaria.domain.Caixa" />
 		<mapping class="br.com.julio.drogaria.domain.Cidade" />
 		<mapping class="br.com.julio.drogaria.domain.Cliente" />
 		<mapping class="br.com.julio.drogaria.domain.Estado" />
