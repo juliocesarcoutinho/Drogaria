@@ -26,7 +26,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Mapeamento das entidade -->
 		<mapping class="br.com.julio.drogaria.domain.Cidade" />
@@ -34,6 +34,7 @@
 		<mapping class="br.com.julio.drogaria.domain.Estado" />
 		<mapping class="br.com.julio.drogaria.domain.Fabricante" />
 		<mapping class="br.com.julio.drogaria.domain.Funcionario" />
+		<mapping class="br.com.julio.drogaria.domain.Historico" />
 		<mapping class="br.com.julio.drogaria.domain.ItemVenda" />
 		<mapping class="br.com.julio.drogaria.domain.Pessoa" />
 		<mapping class="br.com.julio.drogaria.domain.Produto" />
