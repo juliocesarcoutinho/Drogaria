@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Histórico</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+	<h:form id="formulario">
+
+		<p:panel header="Historico">
+
+			<h:panelGrid id="formCodigo" columns="3">
+				<p:outputLabel for="codigo" value="Código: " />
+				<p:inputText id="codigo" size="13" maxlength="13" required="true"
+					requiredMessage="Campo Código Obrigatório"
+					value="#{historicoBean.produto.codigo}"
+					converterMessage="Valor digitado Invalido"
+					validatorMessage="Informe um valor entre 1 e 13 digitos">
+					<f:validateLongRange minimum="1" maximum="9999999999999" />
+				</p:inputText>
+				<p:commandButton icon="ui-icon-search"
+					update=":mensagem :formulario:painelDados"
+					actionListener="#{historicoBean.buscar}"
+					process="@this :formulario:codigo" />
+			</h:panelGrid>
+
+			<h:panelGroup id="painelDados" layout="block">
+				<h:panelGrid columns="2"
+					rendered="#{historicoBean.exibePainelDados}">
+					<p:outputLabel value="Descrição: " />
+					<h:outputText value="#{historicoBean.produto.descricao}" />
+
+					<p:outputLabel value="Preço: " />
+					<h:outputText value="#{historicoBean.produto.preco}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+
+					<p:outputLabel value="Estoque: " />
+					<h:outputText value="#{historicoBean.produto.quantidade}" />
+
+					<p:outputLabel value="Fabricante: " />
+					<h:outputText value="#{historicoBean.produto.fabricante.descricao}" />
+
+					<p:outputLabel value="Observações" />
+					<p:inputTextarea id="observacoes" rows="5" cols="50"
+						autoResize="false" value="#{historicoBean.historico.observações}" />
+				</h:panelGrid>
+
+				<h:panelGrid id="formSalvar" columns="1"
+					rendered="#{historicoBean.exibePainelDados}">
+					<p:commandButton value="Salvar"
+						actionListener="#{historicoBean.salvar}"
+						update=":mensagem :formulario:formCodigo :formulario:painelDados" />
+				</h:panelGrid>
+			</h:panelGroup>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
