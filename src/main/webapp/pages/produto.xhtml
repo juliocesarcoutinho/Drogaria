@@ -24,13 +24,14 @@
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
-						<p:commandButton value="Relatório" actionListener="#{produtoBean.imprimir}" />
+						<p:commandButton value="Relatório"
+							actionListener="#{produtoBean.imprimir}" />
 
 					</f:facet>
 
 					<p:column headerText="Nome" filterBy="#{produto.descricao}"
 						sortBy="#{produto.descricao}">
-						<h:outputText value="#{produto.descricao}"/>
+						<h:outputText value="#{produto.descricao}" />
 					</p:column>
 
 					<p:column headerText="Qtd">
@@ -43,7 +44,9 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Fabricante">
+					<p:column headerText="Fabricante"
+						filterBy="#{produto.fabricante.descricao}"
+						sortBy="#{produto.fabricante.descricao}">
 						<h:outputText value="#{produto.fabricante.descricao}" />
 					</p:column>
 
