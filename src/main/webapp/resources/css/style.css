@@ -17,3 +17,15 @@
 .alinhamentoItens {
 	align-items: center;
 }
+
+h1{
+	font-size: 5em;
+	color: #3B3936;
+	text-align: center;
+}
+
+h2 {
+	font-size: 3em;
+	color: #3B3936;
+	text-align: center;
+}
