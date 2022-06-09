@@ -64,15 +64,14 @@ public class FabricanteService {
 		return jsonSaida;
 	}
 
-
 	@DELETE
 	@Path("{codigo}")
-	public String excluir(@PathParam("codigo") Long codigo){
+	public String excluir(@PathParam("codigo") Long codigo) {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		
+
 		Fabricante fabricante = fabricanteDAO.buscar(codigo);
 		fabricanteDAO.excluir(fabricante);
-		
+
 		Gson gson = new Gson();
 		String saida = gson.toJson(fabricante);
 		return saida;
