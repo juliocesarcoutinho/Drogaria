@@ -1,5 +1,6 @@
 package br.com.julio.drogaria.dao;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,13 +13,20 @@ public class UsuarioDAOTest {
 	public void salvar() {
 		
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(26l);
+		Pessoa pessoa = pessoaDAO.buscar(39l);
 		
-		
+		System.out.println("Pessoa Encontrada");
+		System.out.println("Nome: " + pessoa.getNome());
+		System.out.println("CPF: " + pessoa.getCpf());
+				
 		Usuario usuario = new Usuario();
 		usuario.setAtivo(true);
-		usuario.setTipo('A');
-		usuario.setSenha("q1w2e3r4");
+		usuario.setTipo('B');
+		usuario.setSenhaSemCriptografia("147258");
+		
+		SimpleHash hash = new SimpleHash("md5", usuario.getSenhaSemCriptografia());
+		
+		usuario.setSenha(hash.toHex());
 		usuario.setPessoa(pessoa);
 		
 		System.out.println("Nome do Usuario:" + pessoa.getNome());
@@ -27,6 +35,16 @@ public class UsuarioDAOTest {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
 	
+	}
+	@Test
+	public void autenticar() {
+		String cpf = "367.703.578-36";
+		String senha = "q1w2e3r4";
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario usuario = usuarioDAO.autenticar(cpf, senha);
+		
+		System.out.println("Usuario autenticado: " + usuario);
 	}
 	
 		
