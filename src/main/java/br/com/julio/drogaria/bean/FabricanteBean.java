@@ -45,7 +45,7 @@ public class FabricanteBean implements Serializable {
 	@PostConstruct
 	public void listar() {
 		try {
-			
+
 			Client cliente = ClientBuilder.newClient();
 			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
 			String json = caminho.request().get(String.class);
@@ -68,13 +68,13 @@ public class FabricanteBean implements Serializable {
 		try {
 			Client cliente = ClientBuilder.newClient();
 			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
-		
-			Gson gson = new Gson();			
+
+			Gson gson = new Gson();
 			String json = gson.toJson(fabricante);
-			caminho.request().post(Entity.json(json));	
-			
+			caminho.request().post(Entity.json(json));
+
 			fabricante = new Fabricante();
-			
+
 			json = caminho.request().get(String.class);
 			Fabricante[] vetor = gson.fromJson(json, Fabricante[].class);
 			fabricantes = Arrays.asList(vetor);
@@ -86,24 +86,26 @@ public class FabricanteBean implements Serializable {
 		}
 	}
 
-	public void excluir() {
+	public void excluir(ActionEvent evento) {
 		try {
+			fabricante = (Fabricante) evento.getComponent().getAttributes().get("fabricanteSelecionado");
+
 			Client cliente = ClientBuilder.newClient();
+			
 			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
-		
-			Gson gson = new Gson();			
-			String json = gson.toJson(fabricante);
-			caminho.request().delete();	
+			WebTarget caminhoExcluir = caminho.path("{codigo}").resolveTemplate("codigo", fabricante.getCodigo());
 			
-//			fabricante = new Fabricante();
+			caminhoExcluir.request().delete();
+			String json = caminho.request().get(String.class);
 			
-			json = caminho.request().get(String.class);
+			Gson gson = new Gson();
 			Fabricante[] vetor = gson.fromJson(json, Fabricante[].class);
+			
 			fabricantes = Arrays.asList(vetor);
 
-			Messages.addGlobalInfo("Fabricante excluido com sucesso");
+			Messages.addGlobalInfo("Fabricante removido com sucesso");
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o fabricante");
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover o fabricante");
 			erro.printStackTrace();
 		}
 	}
