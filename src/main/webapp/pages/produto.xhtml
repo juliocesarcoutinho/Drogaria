@@ -49,6 +49,10 @@
 						sortBy="#{produto.fabricante.descricao}">
 						<h:outputText value="#{produto.fabricante.descricao}" />
 					</p:column>
+					
+					<p:column headerText="Foto">
+						<p:graphicImage cache="false" height="" width=""/>
+					</p:column>
 
 					<p:column headerText="Opções">
 						<p:commandButton icon="ui-icon-trash"

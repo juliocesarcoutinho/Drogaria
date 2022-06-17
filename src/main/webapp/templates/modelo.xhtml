@@ -5,6 +5,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="pt_BR">
+	
+<ui:insert name="metadata" />	
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -23,7 +25,7 @@
 		<div id="cabecalho" class="divCabecalho">
 			<h:form>
 				<p:menubar id="formMenu">
-					<p:submenu label="Cadastros">
+					<p:submenu label="Cadastros" >
 						<p:menuitem value="Estados" url="/pages/estados.xhtml" />
 						<p:menuitem value="Cidades" url="/pages/cidades.xhtml" />
 						<p:menuitem value="Fabricantes" url="/pages/fabricante.xhtml" />
@@ -35,12 +37,14 @@
 					</p:submenu>
 
 					<p:submenu label="Movimentações">
+						<p:menuitem value="Abertura Do Caixa" url="/pages/caixa.xhtml" />	
 						<p:menuitem value="Vendas" url="/pages/venda.xhtml" />
+						<p:menuitem value="Listagem de Vendas" url="/pages/vendasListagem.xhtml" />
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
 						<p:menuitem value="Sobre" />
-						<p:menuitem value="Sair" />
+						<p:menuitem value="Sair" url="/pages/autenticacao.xhtml" />
 					</p:submenu>
 
 				</p:menubar>
