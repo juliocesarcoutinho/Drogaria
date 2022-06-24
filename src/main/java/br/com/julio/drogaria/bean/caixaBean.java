@@ -57,14 +57,20 @@ public class caixaBean {
 		funcionarios = funcionarioDAO.listar();
 	}
 	public void salvar() {
+		try {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(caixa.getDataAbertura());
+			calendar.add(Calendar.DATE, 1);
+			caixa.setDataAbertura(calendar.getTime());
+			
+			CaixaDAO caixaDAO = new CaixaDAO();
+			caixaDAO.salvar(caixa);
+			Messages.addGlobalInfo("Caixa Aberto com sucesso");
+			
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Caixa ja aberto");
+			erro.printStackTrace();
+		}
 		
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(caixa.getDataAbertura());
-		calendar.add(Calendar.DATE, 1);
-		caixa.setDataAbertura(calendar.getTime());
-		
-		CaixaDAO caixaDAO = new CaixaDAO();
-		caixaDAO.salvar(caixa);
-		Messages.addGlobalInfo("Caixa Aberto com sucesso");
 	}
 }

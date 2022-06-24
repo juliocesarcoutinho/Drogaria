@@ -1,6 +1,9 @@
 package br.com.julio.drogaria.bean;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +23,8 @@ import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import br.com.julio.drogaria.dao.FabricanteDAO;
@@ -39,6 +44,8 @@ public class ProdutoBean implements Serializable {
 	private Produto produto;
 	private List<Produto> produtos;
 	private List<Fabricante> fabricantes;
+	
+	private StreamedContent foto;
 
 	public Produto getProduto() {
 		return produto;
@@ -62,6 +69,12 @@ public class ProdutoBean implements Serializable {
 
 	public void setFabricantes(List<Fabricante> fabricantes) {
 		this.fabricantes = fabricantes;
+	}
+	public StreamedContent getFoto() {
+		return foto;
+	}
+	public void setFoto(StreamedContent foto) {
+		this.foto = foto;
 	}
 
 	@PostConstruct
@@ -178,6 +191,7 @@ public class ProdutoBean implements Serializable {
 			String fabDescricao = (String) filtros.get("fabricante.descricao");
 			
 			String caminho = Faces.getRealPath("/reports/produtos.jasper");
+			
 
 			Map<String, Object> parametros = new HashMap<>();
 			if(prodDescricao == null) {
@@ -200,5 +214,18 @@ public class ProdutoBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");
 			erro.printStackTrace();
 		}
+	}
+	
+	public void download(ActionEvent evento) {
+		try {
+			
+			produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
+			
+			InputStream stream = new FileInputStream("C:/Eclipse/Uploads/" + produto.getCodigo() + ".JPG");
+			foto = new DefaultStreamedContent(stream, "image/JPG", + produto.getCodigo() + ".JPG");
+		} catch (FileNotFoundException erro) {
+			Messages.addGlobalError("Erro ao Fazer o download da foto");
+		}
+		
 	}
 }

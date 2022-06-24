@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -148,10 +147,18 @@ public class VendaBean implements Serializable {
 			itemVenda.setValorParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
 		}
 
-		calcular();
+		calcular();		
 
 	}
-
+	
+	public void atualizarValorParcial() {
+		for(ItemVenda itemVenda : this.itensVenda) {
+			itemVenda.setValorParcial(itemVenda.getProdutos().getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
+		}
+		
+		this.calcular();
+	}
+	
 	/*
 	 * =============================================================================
 	 * =============== Remover todos os produtos na dataTable ======================

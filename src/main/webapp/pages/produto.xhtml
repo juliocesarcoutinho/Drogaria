@@ -49,9 +49,10 @@
 						sortBy="#{produto.fabricante.descricao}">
 						<h:outputText value="#{produto.fabricante.descricao}" />
 					</p:column>
-					
+
 					<p:column headerText="Foto">
-						<p:graphicImage cache="false" height="" width=""/>
+						<p:graphicImage cache="false" height="50" width="50"
+							url="http://localhost:8080/uploads/#{produto.codigo}.JPG" />
 					</p:column>
 
 					<p:column headerText="Opções">
@@ -70,6 +71,12 @@
 							<f:attribute name="produtoSelecionado" value="#{produto}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-arrowthick-1-s"
+							actionListener="#{produtoBean.download}" ajax="false">
+							<f:attribute name="produtoSelecionado" value="#{produto}" />
+							<p:fileDownload value="#{produtoBean.foto}" />
 						</p:commandButton>
 					</p:column>
 
