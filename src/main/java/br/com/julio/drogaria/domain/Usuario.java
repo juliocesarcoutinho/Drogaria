@@ -2,9 +2,13 @@ package br.com.julio.drogaria.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+
+import br.com.julio.drogaria.enumeracao.TipoUsuario;
 
 @SuppressWarnings("serial")
 @Entity
@@ -16,8 +20,12 @@ public class Usuario extends GenericDomain {
 	private String senhaSemCriptografia;
 	
 	
-	@Column(nullable = false)
-	private Character tipo;
+//	@Column(nullable = false)
+//	private Character tipo;
+	
+	@Column(nullable = true)
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipoUsuario;
 	
 	@Column(nullable = false)
 	private Boolean ativo;
@@ -41,28 +49,36 @@ public class Usuario extends GenericDomain {
 	public void setSenhaSemCriptografia(String senhaSemCriptografia) {
 		this.senhaSemCriptografia = senhaSemCriptografia;
 	}
-
-	public Character getTipo() {
-		return tipo;
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
 	}
-	@Transient
-	public String getTipoFormatado() {
-		String tipoFormatado = null;
-		
-		if(tipo == 'A') {
-			tipoFormatado = "Administrador";
-		}else if (tipo == 'B') {
-			tipoFormatado = "Balconista";
-		}else if (tipo == 'G') {
-			tipoFormatado = "Gerente";
-		}
-		
-		return tipoFormatado;
+	
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
-	public void setTipo(Character tipo) {
-		this.tipo = tipo;
-	}
+//	public Character getTipo() {
+//		return tipo;
+//	}
+//	@Transient
+//	public String getTipoFormatado() {
+//		String tipoFormatado = null;
+//		
+//		if(tipo == 'A') {
+//			tipoFormatado = "Administrador";
+//		}else if (tipo == 'B') {
+//			tipoFormatado = "Balconista";
+//		}else if (tipo == 'G') {
+//			tipoFormatado = "Gerente";
+//		}
+//		
+//		return tipoFormatado;
+//	}
+//
+//	public void setTipo(Character tipo) {
+//		this.tipo = tipo;
+//	}
 
 	public Boolean getAtivo() {
 		return ativo;

@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import br.com.julio.drogaria.domain.Pessoa;
 import br.com.julio.drogaria.domain.Usuario;
+import br.com.julio.drogaria.enumeracao.TipoUsuario;
 
 public class UsuarioDAOTest {
 	@Test
-	@Ignore
 	public void salvar() {
 		
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(39l);
+		Pessoa pessoa = pessoaDAO.buscar(36L);
 		
 		System.out.println("Pessoa Encontrada");
 		System.out.println("Nome: " + pessoa.getNome());
@@ -21,7 +21,7 @@ public class UsuarioDAOTest {
 				
 		Usuario usuario = new Usuario();
 		usuario.setAtivo(true);
-		usuario.setTipo('B');
+		usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 		usuario.setSenhaSemCriptografia("147258");
 		
 		SimpleHash hash = new SimpleHash("md5", usuario.getSenhaSemCriptografia());
@@ -37,6 +37,7 @@ public class UsuarioDAOTest {
 	
 	}
 	@Test
+	@Ignore
 	public void autenticar() {
 		String cpf = "367.703.578-36";
 		String senha = "q1w2e3r4";
