@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.com.julio.drogaria.dao.PessoaDAO;
@@ -97,7 +98,7 @@ public class UsuarioBean implements Serializable {
 			Messages.addGlobalInfo("Usuario Salvo Com Sucesso");
 
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao excluir usuario");
+			Messages.addGlobalError(Faces.getResourceBundle("msg").getString("usuarioSalvoSucesso"));
 		}
 	}
 
