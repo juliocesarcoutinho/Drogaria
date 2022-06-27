@@ -20,10 +20,7 @@ public class Usuario extends GenericDomain {
 	private String senhaSemCriptografia;
 	
 	
-//	@Column(nullable = false)
-//	private Character tipo;
-	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipoUsuario;
 	

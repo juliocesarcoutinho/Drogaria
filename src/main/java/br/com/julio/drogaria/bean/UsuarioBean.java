@@ -59,7 +59,7 @@ public class UsuarioBean implements Serializable {
 	public void listar() {
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarios = usuarioDAO.listar("tipo");
+			usuarios = usuarioDAO.listar("tipoUsuario");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os usuários");
@@ -89,7 +89,7 @@ public class UsuarioBean implements Serializable {
 			usuarioDAO.merge(usuario);
 
 			usuario = new Usuario();
-			usuarios = usuarioDAO.listar("tipo");
+			usuarios = usuarioDAO.listar("tipoUsuario");
 
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoaDAO.listar("nome");

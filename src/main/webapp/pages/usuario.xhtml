@@ -10,12 +10,12 @@
 	<ui:define name="conteudo">
 	
 	<h:form id="formListagem">
-		<p:panel header="Listagem de Usuarios">
+		<p:panel header="#{msg.cabecalhoPainel}">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{usuarioBean.usuarios}" var="usuario"
 				rows="5">
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+					<p:commandButton value="#{msg.botaoNovo}" oncomplete="PF('dialogo').show();"
 						actionListener="#{usuarioBean.novo}"
 						update=":mensagem :formCadastro:painel">
 						<f:actionListener
@@ -23,7 +23,7 @@
 					</p:commandButton>
 				</f:facet>
 
-				<p:column headerText="Nome" sortBy="#{usuario.pessoa.nome}"
+				<p:column headerText="#{msg.cabecalhoNome}" sortBy="#{usuario.pessoa.nome}"
 					filterBy="#{usuario.pessoa.nome}">
 					<h:outputText value="#{usuario.pessoa.nome}" />
 				</p:column>
@@ -33,8 +33,8 @@
 					<h:outputText value="#{usuario.pessoa.cpf}" />
 				</p:column>
 
-				<p:column headerText="Tipo" sortBy="#{usuario.tipo}">
-					<h:outputText value="#{usuario.tipoFormatado}" />
+				<p:column headerText="Tipo" sortBy="#{usuario.tipoUsuario.toString()}">
+					<h:outputText value="#{usuario.tipoUsuario.toString()}" />
 				</p:column>
 
 				<p:column headerText="Ativo" sortBy="#{usuario.ativoFormatado()}">
@@ -93,11 +93,11 @@
 				</p:password>
 
 				<p:outputLabel for="tipo" value="Tipo:" />
-				<p:selectOneRadio id="tipo" value="#{usuarioBean.usuario.tipo}"
+				<p:selectOneRadio id="tipo" value="#{usuarioBean.usuario.tipoUsuario}"
 					required="true" requiredMessage="O campo 'Tipo' é obrigatório">
-					<f:selectItem itemValue="A" itemLabel="Administrador" />
-					<f:selectItem itemValue="G" itemLabel="Gerente" />
-					<f:selectItem itemValue="B" itemLabel="Balconista" />
+					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador" />
+					<f:selectItem itemValue="GERENTE" itemLabel="Gerente" />
+					<f:selectItem itemValue="BALCONISTA" itemLabel="Balconista" />
 				</p:selectOneRadio>
 
 				<p:outputLabel for="ativo" value="Ativo:" />
