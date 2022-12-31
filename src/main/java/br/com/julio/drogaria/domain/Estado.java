@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity //Entidade do Hibernate //
-
 public class Estado extends GenericDomain {
 	@Column(length = 2, nullable = false)
 	private String sigla;

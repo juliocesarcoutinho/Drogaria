@@ -31,7 +31,7 @@ public class ImagemBean {
 	
 	public StreamedContent getFoto() throws IOException {
 		if(caminho == null || caminho.isEmpty()){
-			Path path = Paths.get("C:/Eclipse/Uploads/branco.png");
+			Path path = Paths.get("C:/Workspace/Projetos/Drogaria/src/main/webapp/resources/images/branco.png");
 			InputStream stream = Files.newInputStream(path);
 			foto = new DefaultStreamedContent(stream);
 		}else{

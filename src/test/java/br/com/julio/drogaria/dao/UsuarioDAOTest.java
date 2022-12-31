@@ -10,10 +10,11 @@ import br.com.julio.drogaria.enumeracao.TipoUsuario;
 
 public class UsuarioDAOTest {
 	@Test
+	@Ignore
 	public void salvar() {
 		
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(36L);
+		Pessoa pessoa = pessoaDAO.buscar(3L);
 		
 		System.out.println("Pessoa Encontrada");
 		System.out.println("Nome: " + pessoa.getNome());
@@ -37,10 +38,10 @@ public class UsuarioDAOTest {
 	
 	}
 	@Test
-	@Ignore
+//	@Ignore
 	public void autenticar() {
 		String cpf = "367.703.578-36";
-		String senha = "q1w2e3r4";
+		String senha = "147258";
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = usuarioDAO.autenticar(cpf, senha);

@@ -129,7 +129,7 @@ public class ProdutoBean implements Serializable {
 			Produto produtoRetorno = produtoDAO.merge(produto);
 
 			Path origem = Paths.get(produto.getCaminho());
-			Path destino = Paths.get("C:/Eclipse/Uploads/" + produtoRetorno.getCodigo() + ".JPG");
+			Path destino = Paths.get("C:/Workspace/Projetos/Imagens/Produtos/" + produtoRetorno.getCodigo() + ".JPG");
 			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
 
 			produto = new Produto();
